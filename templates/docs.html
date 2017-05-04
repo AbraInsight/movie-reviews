@@ -1,0 +1,17 @@
+{% extends "base.html" %} {% block head %}
+<link rel="stylesheet" href="/static/css/docs.css" /> {% endblock %} {% block content %}
+<h2>Introduction</h2>
+<p class="justify">Sentiment Analysis is the computational treatment of opinion, mood, feeling and subjectivity in words and phrases from
+    collected text. </p>
+<p class="justify">The graphs explore the relationship between sentiment in Tweets, determined by numerical representations, and S&amp;P 500
+    Index Volatility changes. Sentiment is determined here by a count of the number of positive and negative trading-related
+    words by minute, positive minus negative, and average sentiment is this value divided by the number of relevant Tweets.</p>
+<p class="justify">Machine learning was used to investigate the relationship further, resulting in the predictions in the Dashboard.</p>
+
+<p class="justify">The chart below is a financial technical indicator that represents historic value changes for each minute of volatility of
+    the S&amp;P 500 Index for a selected day (in black) mapped with predicted values. Both predictive models - Linear Regression
+    and Regression Tree - are based on the Twitter sentiment rate for the corresponding minutes. </p>
+
+{% endblock %} {% block scripts %}
+<script src="/static/js/docs.js"></script>
+{% endblock %}

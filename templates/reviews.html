@@ -1,0 +1,88 @@
+{% extends "base.html" %} {% block head %}
+<link rel="stylesheet" href="/static/css/reviews.css" /> {% endblock %} {% block content %}
+<div class="dash">
+    <div class="titles">
+        <div class="spacer">
+            <div class="card">
+                <h2>Lady Macbeth</h2>
+            </div>
+        </div>
+        <div class="spacer">
+            <div class="card">
+                <h2>A Dog's Purpose</h2>
+            </div>
+        </div>
+        <div class="spacer">
+            <div class="card">
+                <h2>King Arthur</h2>
+            </div>
+        </div>
+        <div class="spacer">
+            <div class="card">
+                <h2>Logan</h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="minis1">
+        <div class="card">
+            <div id="macbeth2" class="graph short"></div>
+        </div>
+
+        <div class="card">
+            <div id="dog2" class="graph short"></div>
+        </div>
+
+        <div class="card">
+            <div id="arthur2" class="graph short"></div>
+        </div>
+
+        <div class="card no-margin">
+            <div id="logan2" class="graph short"></div>
+        </div>
+    </div>
+
+    <div class="minis2">
+        <div class="card">
+            <div id="macbeth1" class="graph short"></div>
+        </div>
+
+        <div class="card">
+            <div id="dog1" class="graph short"></div>
+        </div>
+
+        <div class="card">
+            <div id="arthur1" class="graph short"></div>
+        </div>
+
+
+        <div class="card no-margin">
+            <div id="logan1" class="graph short"></div>
+        </div>
+    </div>
+
+    <div class="choice">
+        <div class="card">
+            <h3>Choose the time period:</h3>
+            <select id="period_picker">
+                <option value="1">1 hour</option>
+                <option value="12">12 hours</option>
+                <option value="72">3 days</option>
+            </select>
+        </div>
+        <div class="card">
+            <div class="legend-container">
+                <div class="line numcolor"></div>
+                <p class="resize">Number of Tweets</p>
+            </div>
+            <div class="legend-container">
+                <div class="line sumcolor"></div>
+                <p class="resize">Tweet Sentiment</p>
+            </div>
+        </div>
+    </div>
+
+</div>
+{% endblock %} {% block scripts %}
+<script src="/static/js/reviews.js"></script>
+{% endblock %}

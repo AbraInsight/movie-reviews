@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <link rel="icon" type="image/png" href="/static/icon1.png" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+    <link rel="stylesheet" href="/static/css/reset.css" />
+    <link rel="stylesheet" href="/static/css/styles.css" />
+
+    <title>Tweet Analysis - {{ page.title }}</title>
+
+    {% block head %}{% endblock %}
+
+</head>
+
+<body>
+
+    <div id="nav">
+        <div class="center">
+            <h1>Movie Reviews</h1>
+            <div>
+                <a href="/" {% if page.title=='Reviews' %}class="selected" {% endif %}>Reviews</a>
+                <a href="/docs" {% if page.title=='Documentation' %}class="selected"{% endif %}>Documentation</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="content">
+        <div class="center">
+            {% block content %}{% endblock %}
+        </div>
+    </div>
+
+    <div class="center copyright">&copy; Copyright 2017 Ruth, Faiza, Sneha and Zhana</div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.js"></script>
+    <script src="https://www.gstatic.com/charts/loader.js"></script>
+
+    {% block scripts %}{% endblock %}
+
+</body>
+
+</html>
