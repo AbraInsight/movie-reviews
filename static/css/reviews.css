@@ -1,149 +1,216 @@
-.grow {
-    flex-grow: 1;
-    margin-bottom: 0;
+html, body {
+    height: 100%;
+}
+body {
+    background-color: rgb(40,40,40);
 }
 
-.grow.left {
-    text-align: right;
-}
-
-.box {
-    border: 1px solid rgba(0,0,0,.3);
-    border-radius: 3px;
-    padding: 8px 16px;
-    margin: 0 8px;
-    font-size: 28px;
-}
-
-.dash {
+.center {
     position: fixed;
-    top: 52px;
+    top: 0;
     left: 0;
-    height: calc(100% - 52px);
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: height .4s;
+}
+
+.container {
+    position: relative;
+    width: 760px;
+    height: 261px;
+}
+
+.cover {
+    height: 261px;
+    width: 175px;
+    box-shadow: 0px 5px 10px rgba(0,0,0,.4), 0 0 3px rgba(0,0,0,.2);
+    background-size: cover;
+    background-position: 50%;
+    background-color: black;
+    position: absolute;
+    top: 0;
+    transition: transform .3s, left .4s, opacity .2s, height .4s, width .4s;
+    cursor: pointer;
+}
+
+.cover.dog {
+    background-image: url('/static/images/dogs_purpose.jpg');
+    left: 0;
+}
+
+.cover.king {
+    background-image: url('/static/images/king_arthur.jpg');
+    left: 195px;
+}
+
+.cover.macbeth {
+    background-image: url('/static/images/lady_macbeth.jpg');
+    left: 390px;
+}
+
+.cover.logan {
+    background-image: url('/static/images/logan.jpg');
+    left: 585px;
+}
+
+.cover:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0,0,0,0);
+    transition: background-color .3s;
+}
+
+.container:hover .cover:after {
+    background-color: rgba(0,0,0,.5);
+}
+
+.cover:hover {
+    transform: scale(1.05);
+}
+
+.cover:hover:after {
+    background-color: rgba(0,0,0,0) !important;
+}
+
+.background {
+    position: fixed;
+    height: 50%;
+    top: 0;
+    left: 0;
     width: 100%;
     background-image: url('/static/images/background.jpg');
     background-size: cover;
     background-position: 50%;
+    transition: height .4s, background-image 1s, opacity .4s;
+    z-index: -1;
 }
 
-.dash .titles {
+.meta {
     position: absolute;
     top: 0;
-    left: 0;
-    width: 16%;
-    height: 100%;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    left: 66px;
+    color: white;
+    opacity: 0;
+    transition: opacity .4s;
+    pointer-events: none;
 }
 
-.dash .titles .spacer {
-    position: relative;
-    margin: 0;
-    height: calc(25% - 7.5px);
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.meta .title {
+    font-size: 36px;
+    line-height: 1em;
+    height: 36px;
+    margin-bottom: 4px;
+    text-shadow: 0 0 20px black;
 }
 
-.dash .titles .card {
-    margin: 0;
-    padding: 20px;
-    width: 100%;
-}
-
-.dash .titles .card h2 {
-    margin: 0;
+.meta .sub {
     font-size: 20px;
+    line-height: 1em;
+    height: 20px;
+    text-shadow: 0 0 20px black;
+    opacity: .6;
 }
 
-.dash .minis1 {
+.desc {
     position: absolute;
-    left: 16%;
-    width: 34%;
-    height: 100%;
-    padding: 20px 10px 20px 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    bottom: -70px;
+    color: white;
+    transition: opacity .3s .1s;
+    pointer-events: none;
 }
 
-.dash .minis2 {
-    position: absolute;
-    left: 50%;
-    width: 34%;
-    height: 100%;
-    padding: 20px 0 20px 10px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+.desc h2 {
+    font-size: 20px;
+    line-height: 1em;
+    margin-bottom: 4px;
+    height: 20px;
+    opacity: .6;
 }
 
-.dash .choice {
-    position: absolute;
+.desc .title {
+    font-size: 26px;
+    line-height: 1em;
+    height: 26px;
+}
+
+.logo {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    opacity: .3;
+    background-image: url('/static/images/cf_logo.png');
+    background-size: contain;
+    height: 27.5px;
+    width: 125.5px;
+    transition: opacity .2s;
+}
+
+.logo:hover {
+    opacity: 1;
+}
+
+.copyright {
+    position: fixed;
+    bottom: 0;
     right: 0;
-    width: 16%;
-    height: 100%;
+    color: rgba(255,255,255,.3);
+    font-size: 11px;
     padding: 20px;
-    display: flex;
-    flex-direction: column;
 }
 
-.dash .choice .card {
-    padding: 20px;
-    position: relative;
-    margin: 0 0 20px 0;
+.arrow {
+    height: 86px;
+    width: 86px;
+    position: absolute;
+    left: -84px;
+    top: -11px;
+    opacity: 0;
+    transition: opacity .4s;
+    pointer-events: none;
+    cursor: pointer;
 }
 
-.dash .choice .card:last-of-type {
-    margin-bottom: 0;
+.view .background {
+    height: 105px;
+    opacity: .4;
 }
 
-.choice .legend-container {
-    display: flex;
-    align-items: center;
-    margin-bottom: 20px;
+.view .center {
+    height: 301px;
 }
 
-.choice .card .legend-container:last-of-type {
-    margin-bottom: 0;
+.view .desc {
+    opacity: 0;
+    transition: opacity .2s;
 }
 
-.choice .line {
-    width: 30px;
-    height: 2px;
+.view .cover.selected {
+    left: 0;
+    opacity: 1;
+    height: 65px;
+    width: 44px;
 }
 
-.choice .card .numcolor {
-    background-color: #F44336;
+.view .cover {
+    opacity: 0;
+    pointer-events: none;
+    box-shadow: 0 0 0 rgba(0,0,0,0);
 }
 
-.choice .card .sumcolor {
-    background-color: #FF9800;
+.view .cover:after {
+    background-color: rgba(0,0,0,0) !important;
 }
 
-.choice .card .resize {
-    font-size: 14px;
-    margin: 0 0 0 10px;
-}
-
-.dash .minis1 .card {
-    position: relative;
-    margin: 0;
-    height: calc(25% - 10px);
-}
-
-.dash .minis2 .card {
-    position: relative;
-    margin: 0;
-    height: calc(25% - 10px);
-}
-
-.dash .minis .graph {
-    height: 100% !important;
-}
-
-.dash .minis .graph_header {
-    display: none;
+.view .meta,
+.view .arrow {
+    opacity: 1;
+    pointer-events: all;
+    transition: opacity .4s .3s;
 }

@@ -1,88 +1,61 @@
-{% extends "base.html" %} {% block head %}
-<link rel="stylesheet" href="/static/css/reviews.css" /> {% endblock %} {% block content %}
-<div class="dash">
-    <div class="titles">
-        <div class="spacer">
-            <div class="card">
-                <h2>Lady Macbeth</h2>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <link rel="icon" type="image/png" href="/static/icon1.png" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+    <link rel="stylesheet" href="/static/css/reset.css" />
+    <link rel="stylesheet" href="/static/css/reviews.css" />
+
+    <title>Tweet Analysis - Movie Reviews</title>
+
+</head>
+
+<body>
+
+    <div class="background"></div>
+
+    <div class="center">
+        <div class="container">
+
+            <svg class="arrow" xmlns="http://www.w3.org/2000/svg" id="Layer_1" viewBox="-288 411.9 18 18">
+                <style>
+                    .svg-arrow-left {
+                        fill: none;
+                        stroke: #ffffff;
+                        stroke-width: 0.8;
+                        stroke-linecap: round;
+                        stroke-linejoin: round;
+                        stroke-miterlimit: 10;
+                    }
+                </style>
+                <path id="XMLID_1_" d="M-277.5 417l-3 3.9 3 3.9" class="svg-arrow-left"></path>
+            </svg>
+
+            <div class="cover dog" data-title="A Dog's Purpose"></div>
+            <div class="cover king" data-title="King Arthur: Legend Of The Sword"></div>
+            <div class="cover macbeth" data-title="Lady Macbeth"></div>
+            <div class="cover logan" data-title="Logan"></div>
+            <div class="meta">
+                <p class="title"></p>
+                <p class="sub">Live Review</p>
             </div>
-        </div>
-        <div class="spacer">
-            <div class="card">
-                <h2>A Dog's Purpose</h2>
-            </div>
-        </div>
-        <div class="spacer">
-            <div class="card">
-                <h2>King Arthur</h2>
-            </div>
-        </div>
-        <div class="spacer">
-            <div class="card">
-                <h2>Logan</h2>
-            </div>
-        </div>
-    </div>
-
-    <div class="minis1">
-        <div class="card">
-            <div id="macbeth2" class="graph short"></div>
-        </div>
-
-        <div class="card">
-            <div id="dog2" class="graph short"></div>
-        </div>
-
-        <div class="card">
-            <div id="arthur2" class="graph short"></div>
-        </div>
-
-        <div class="card no-margin">
-            <div id="logan2" class="graph short"></div>
-        </div>
-    </div>
-
-    <div class="minis2">
-        <div class="card">
-            <div id="macbeth1" class="graph short"></div>
-        </div>
-
-        <div class="card">
-            <div id="dog1" class="graph short"></div>
-        </div>
-
-        <div class="card">
-            <div id="arthur1" class="graph short"></div>
-        </div>
-
-
-        <div class="card no-margin">
-            <div id="logan1" class="graph short"></div>
-        </div>
-    </div>
-
-    <div class="choice">
-        <div class="card">
-            <h3>Choose the time period:</h3>
-            <select id="period_picker">
-                <option value="1">1 hour</option>
-                <option value="12">12 hours</option>
-                <option value="72">3 days</option>
-            </select>
-        </div>
-        <div class="card">
-            <div class="legend-container">
-                <div class="line numcolor"></div>
-                <p class="resize">Number of Tweets</p>
-            </div>
-            <div class="legend-container">
-                <div class="line sumcolor"></div>
-                <p class="resize">Tweet Sentiment</p>
+            <div class="desc">
+                <h2>Select a film to continue</h2>
+                <p class="title"></p>
             </div>
         </div>
     </div>
 
-</div>
-{% endblock %} {% block scripts %}
-<script src="/static/js/reviews.js"></script>
-{% endblock %}
+    <a target="_blank" href="http://www.codefirstgirls.org.uk/" class="logo"></a>
+    <div class="copyright">&copy; Copyright 2017 Ruth, Faiza, Sneha and Zhana</div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.js"></script>
+    <script src="https://www.gstatic.com/charts/loader.js"></script>
+    <script src="/static/js/reviews.js"></script>
+</body>
+
+</html>
