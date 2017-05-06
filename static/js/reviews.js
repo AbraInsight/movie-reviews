@@ -27,6 +27,8 @@
         current_film = '';
     });
 
+    $(window).on('resize', drawAll);
+
     // call the google charts api loader and callback on ready
     google.charts.load('current', { 'packages': ['corechart'] });
     google.charts.setOnLoadCallback(getData);
@@ -70,47 +72,46 @@
         console.log(out);
         return out;
     }
-    
-    $(window).on('resize', drawAll);
 
     function drawAll() {
-        var build1 = new google.visualization.DataTable();
-        build1.addColumn('string', 'Time');
-        build1.addColumn('number', 'Number of Tweets');
+        draw('num');
+        draw('summed');
+    }
 
-        var build2 = new google.visualization.DataTable();
-        build2.addColumn('string', 'Time');
-        build2.addColumn('number', 'Total Sentiment');
+    function draw(id) {
+    var build = new google.visualization.DataTable();
+    build.addColumn('string', 'Time');
+    if (id == 'num') {
+        build.addColumn('number', 'Number of Tweets');
+    }
+    if (id == 'summed') {
+        build.addColumn('number', 'Total Sentiment');
+    }
+    build.addRows(buildData(['dt', id]));
 
-        build1.addRows(buildData(['dt', 'num']));
-        build2.addRows(buildData(['dt', 'summed']));
-
-                var options = {
-            // colors: config.colors,
-            // hAxis: {
-            //     slantedText: true,
-            //     showTextEvery: getTickInterval()
-            // },
-            chartArea: {
-                top: 30,
-                bottom: 80,
-                left: 70,
-                right: 40,
-                width: '100%',
-                height: '100%'
-            },
-            theme: {
-                legend: {
-                    position: 'none'
-                }
+    var options = {
+        // colors: config.colors,
+        // hAxis: {
+        //     slantedText: true,
+        //     showTextEvery: getTickInterval()
+        // },
+        chartArea: {
+            top: 30,
+            bottom: 80,
+            left: 70,
+            right: 40,
+            width: '100%',
+            height: '100%'
+        },
+        theme: {
+            legend: {
+                position: 'none'
             }
-        };
-
-        var chart = new google.visualization.LineChart(document.getElementById('num'));
-        chart.draw(build1, options);
-
-        var chart = new google.visualization.LineChart(document.getElementById('sum'));
-        chart.draw(build2, options);
+        }
     };
+
+    var chart = new google.visualization.LineChart(document.getElementById(id));
+    chart.draw(build, options);
+};
 
 })();

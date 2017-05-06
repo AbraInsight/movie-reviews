@@ -230,7 +230,7 @@ option {
     padding: 30px;
 }
 
-#sum {
+#num {
     position: absolute;
     left: 5%;
     width: 43%;
@@ -242,7 +242,7 @@ option {
     color: white;
 }
 
-#num {
+#summed {
     position: absolute;
     left: 52%;
     width: 43%;
