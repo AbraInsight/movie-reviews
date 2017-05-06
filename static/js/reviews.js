@@ -17,7 +17,6 @@
     $('.arrow').on('click', function () {
         $('.cover').removeClass('selected');
         $('body').removeClass('view');
-        $('.meta .title').text('');
     });
 
 })();
