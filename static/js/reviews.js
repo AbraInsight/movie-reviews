@@ -55,23 +55,25 @@
 
     function buildData(config) {
         var out = [];
-        var line = [];
-        // line.push(moment.unix(item.timestamp).format("HH:mm") + ':00');
-        line.push(moment.unix(current_data[config[0]]).format("HH:mm:ss"));
-        config.forEach(function (col) {
-            line.push(col);
+        current_data[current_film].forEach(function (row) {
+            line = [];
+            config.forEach(function (col) {
+                var i = structure.indexOf(col);
+                if (col == 'dt') {
+                    line.push(moment.unix(row[i]).format("HH:mm") + ':00');
+                } else {
+                    line.push(row[i]);
+                }
+            })
+            out.push(line);
         });
-        out.push(line);
+        console.log(out);
         return out;
     }
+    
+    $(window).on('resize', drawAll);
 
     function drawAll() {
-        console.log(current_film);
-        console.log(current_data[current_film]);
-
-        // data = [];
-        // row = [];
-
         var build1 = new google.visualization.DataTable();
         build1.addColumn('string', 'Time');
         build1.addColumn('number', 'Number of Tweets');
@@ -80,14 +82,35 @@
         build2.addColumn('string', 'Time');
         build2.addColumn('number', 'Total Sentiment');
 
-        build1.addRows(buildData(['dt', 'summed']));
-        build2.addRows(buildData(['dt', 'num']));
+        build1.addRows(buildData(['dt', 'num']));
+        build2.addRows(buildData(['dt', 'summed']));
+
+                var options = {
+            // colors: config.colors,
+            // hAxis: {
+            //     slantedText: true,
+            //     showTextEvery: getTickInterval()
+            // },
+            chartArea: {
+                top: 30,
+                bottom: 80,
+                left: 70,
+                right: 40,
+                width: '100%',
+                height: '100%'
+            },
+            theme: {
+                legend: {
+                    position: 'none'
+                }
+            }
+        };
 
         var chart = new google.visualization.LineChart(document.getElementById('num'));
-        chart.draw(build1);
+        chart.draw(build1, options);
 
         var chart = new google.visualization.LineChart(document.getElementById('sum'));
-        chart.draw(build2);
+        chart.draw(build2, options);
     };
 
 })();

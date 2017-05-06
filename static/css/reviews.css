@@ -222,6 +222,34 @@ option {
     color: black;
 }
 
+
+.graph {
+    position: absolute;
+    top: 20%;
+    background-color: rgba(255,255,255,.3);
+    padding: 30px;
+}
+
+#sum {
+    position: absolute;
+    left: 5%;
+    width: 43%;
+    height: 60%;
+    padding: 20px;
+}
+
+.graph_titles {
+    color: white;
+}
+
+#num {
+    position: absolute;
+    left: 52%;
+    width: 43%;
+    height: 60%;
+    padding: 20px;
+}
+
 .view .background {
     height: 105px;
     opacity: .4;
