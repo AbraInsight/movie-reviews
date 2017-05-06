@@ -19,7 +19,6 @@ body {
 }
 
 .header {
-    position: relative;
     padding: 40px;
     color: rgb(255,255,255);
     font-size: 64px;
@@ -28,7 +27,6 @@ body {
     letter-spacing: 2px;
     text-align: center;
     text-shadow: 0 0 10px black;
-    z-index: 1;
 }
 
 .view .header {
@@ -46,6 +44,7 @@ body {
     align-items: center;
     justify-content: center;
     transition: height .4s;
+    z-index: 1;
 }
 
 .container {
@@ -65,6 +64,7 @@ body {
     top: 0;
     transition: transform .3s, left .4s, opacity .2s, height .4s, width .4s;
     cursor: pointer;
+    z-index: 5;
 }
 
 .cover.dog {
@@ -195,6 +195,33 @@ body {
     cursor: pointer;
 }
 
+.content {
+    position: fixed;
+    top: 105px;
+    left: 0;
+    height: calc(100% - 175px);
+    width: 100%;
+    overflow: auto;
+    z-index: 1;
+    display: none;
+}
+
+.picker {
+    padding: 30px;
+    text-align: right;
+}
+
+select {
+    font-size: 20px;
+    background-color: transparent;
+    border: none;
+    color: rgb(235,235,235);
+}
+
+option {
+    color: black;
+}
+
 .view .background {
     height: 105px;
     opacity: .4;
@@ -231,4 +258,8 @@ body {
     opacity: 1;
     pointer-events: all;
     transition: opacity .4s .3s;
+}
+
+.view .content {
+    display: block;
 }
