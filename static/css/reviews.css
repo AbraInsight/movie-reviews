@@ -1,8 +1,10 @@
-html, body {
+html,
+body {
     height: 100%;
 }
+
 body {
-    background-color: rgb(40,40,40);
+    background-color: rgb(40, 40, 40);
 }
 
 .background {
@@ -20,10 +22,10 @@ body {
 
 .header {
     padding: 40px;
-    color: rgb(255,255,255);
+    color: rgb(255, 255, 255);
     font-size: 64px;
     font-family: 'Six Caps', sans-serif;
-    transition: opacity .2s .2s;
+    transition: opacity .4s .2s;
     letter-spacing: 2px;
     text-align: center;
     text-shadow: 0 0 10px black;
@@ -56,7 +58,7 @@ body {
 .cover {
     height: 261px;
     width: 175px;
-    box-shadow: 0px 5px 10px rgba(0,0,0,.4), 0 0 3px rgba(0,0,0,.2);
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, .4), 0 0 3px rgba(0, 0, 0, .2);
     background-size: cover;
     background-position: 50%;
     background-color: black;
@@ -94,12 +96,12 @@ body {
     left: 0;
     height: 100%;
     width: 100%;
-    background-color: rgba(0,0,0,0);
+    background-color: rgba(0, 0, 0, 0);
     transition: background-color .3s;
 }
 
 .container:hover .cover:after {
-    background-color: rgba(0,0,0,.5);
+    background-color: rgba(0, 0, 0, .5);
 }
 
 .cover:hover {
@@ -107,7 +109,7 @@ body {
 }
 
 .cover:hover:after {
-    background-color: rgba(0,0,0,0) !important;
+    background-color: rgba(0, 0, 0, 0) !important;
 }
 
 .meta {
@@ -178,7 +180,7 @@ body {
     position: fixed;
     bottom: 0;
     right: 0;
-    color: rgba(255,255,255,.3);
+    color: rgba(255, 255, 255, .3);
     font-size: 11px;
     padding: 20px;
 }
@@ -201,13 +203,15 @@ body {
     left: 0;
     height: calc(100% - 175px);
     width: 100%;
-    overflow: auto;
+    overflow: hidden;
     z-index: 1;
-    display: none;
+    opacity: 0;
+    transition: opacity .2s;
+    pointer-events: none;
 }
 
 .picker {
-    padding: 30px;
+    padding: 30px 80px;
     text-align: right;
 }
 
@@ -215,39 +219,38 @@ select {
     font-size: 20px;
     background-color: transparent;
     border: none;
-    color: rgb(235,235,235);
+    color: rgb(235, 235, 235);
 }
 
 option {
     color: black;
 }
 
+.graphs {
+    padding: 0px 80px;
+    height: calc(100% - 84px);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: rgba(255, 255, 255, .05);
+}
+
+.graph-container {
+    width: calc(50% - 20px);
+    height: 100%;
+    max-height: 500px;
+    display: flex;
+    flex-direction: column;
+}
+
+.graph_title {
+    color: white;
+    padding: 20px;
+}
 
 .graph {
-    position: absolute;
-    top: 20%;
-    background-color: rgba(255,255,255,.3);
-    padding: 30px;
-}
-
-#num {
-    position: absolute;
-    left: 5%;
-    width: 43%;
-    height: 60%;
-    padding: 20px;
-}
-
-.graph_titles {
-    color: white;
-}
-
-#summed {
-    position: absolute;
-    left: 52%;
-    width: 43%;
-    height: 60%;
-    padding: 20px;
+    width: 100%;
+    flex-grow: 1;
 }
 
 .view .background {
@@ -274,11 +277,11 @@ option {
 .view .cover {
     opacity: 0;
     pointer-events: none;
-    box-shadow: 0 0 0 rgba(0,0,0,0);
+    box-shadow: 0 0 0 rgba(0, 0, 0, 0);
 }
 
 .view .cover:after {
-    background-color: rgba(0,0,0,0) !important;
+    background-color: rgba(0, 0, 0, 0) !important;
 }
 
 .view .meta,
@@ -289,5 +292,7 @@ option {
 }
 
 .view .content {
-    display: block;
+    pointer-events: all;
+    opacity: 1;
+    transition: opacity .4s .2s;
 }
