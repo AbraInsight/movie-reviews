@@ -51,10 +51,13 @@
     });
 
     function getData(update) {
+        loading = true;
         // call the server for data
         return $.get('/api/realtime/init/?period=' + encodeURIComponent(current_period))
             .done(function (resp) {
                 current_data = resp;
+                $('#covers').addClass('show');
+                $('#spinner').addClass('hide');
                 if (!update) {
                     setupSockets();
                 }

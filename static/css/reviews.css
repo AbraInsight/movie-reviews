@@ -307,3 +307,25 @@ option {
     opacity: 1;
     transition: opacity .4s .2s;
 }
+
+#covers {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .2s;
+}
+
+#covers.show {
+    opacity: 1;
+    pointer-events: all;
+}
+
+#spinner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#spinner.hide {
+    display: none;
+}
