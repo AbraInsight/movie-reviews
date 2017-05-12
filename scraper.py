@@ -129,5 +129,5 @@ stream.filter(languages=["en"], track=["lady macbeth", "dog's purpose", "king ar
 # stream.filter(languages=["en"], track=['#photography'], async=True) #DEBUG!
 print 'INIT....'
 
-if __name__ == '__main__':
-    socket.run(app, port=4200)
+# if __name__ == '__main__':
+socket.run(app, port=4200)
