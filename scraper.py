@@ -137,4 +137,4 @@ stream.filter(languages=["en"], track=["lady macbeth", "dog's purpose", "king ar
 print 'INIT....'
 
 # if __name__ == '__main__':
-socket.run(app, port=4200)
+socket.run(app, host='0.0.0.0', port=4200)
