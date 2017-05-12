@@ -45,7 +45,7 @@
     google.charts.load('current', { 'packages': ['corechart'] });
     google.charts.setOnLoadCallback(getData);
 
-    var socket = io('http://127.0.0.1:4200/api/realtime/update');
+    var socket = io('http://104.199.106.153:4200/api/realtime/update');
     socket.on('connect', function () {
         console.log('CONNECT');
     });
