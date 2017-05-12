@@ -107,14 +107,14 @@ class StdOutListener(tweepy.streaming.StreamListener):
 
 con = lite.connect("tweet.db")
 cursor = con.cursor()
-cursor.execute("DROP TABLE IF EXISTS lady_macbeth")
-cursor.execute("DROP TABLE IF EXISTS dogs_purpose")
-cursor.execute("DROP TABLE IF EXISTS king_arthur")
-cursor.execute("DROP TABLE IF EXISTS logan")
-cursor.execute("CREATE TABLE lady_macbeth(dt INT, summed INT, num INT)")
-cursor.execute("CREATE TABLE dogs_purpose(dt INT, summed INT, num INT)")
-cursor.execute("CREATE TABLE king_arthur(dt INT, summed INT, num INT)")
-cursor.execute("CREATE TABLE logan(dt INT, summed INT, num INT)")
+# cursor.execute("DROP TABLE IF EXISTS lady_macbeth")
+# cursor.execute("DROP TABLE IF EXISTS dogs_purpose")
+# cursor.execute("DROP TABLE IF EXISTS king_arthur")
+# cursor.execute("DROP TABLE IF EXISTS logan")
+cursor.execute("CREATE TABLE IF NOT EXISTS lady_macbeth(dt INT, summed INT, num INT)")
+cursor.execute("CREATE TABLE IF NOT EXISTS dogs_purpose(dt INT, summed INT, num INT)")
+cursor.execute("CREATE TABLE IF NOT EXISTS king_arthur(dt INT, summed INT, num INT)")
+cursor.execute("CREATE TABLE IF NOT EXISTS logan(dt INT, summed INT, num INT)")
 con.close()
 
 # This handles Twitter authetification and the connection to Twitter
