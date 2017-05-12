@@ -27,6 +27,10 @@ app = Flask(__name__)
 cors = CORS(app,resources={r"/*":{"origins":"*"}})
 socket = SocketIO(app)
 
+@socket.on('connect')
+def on_connect():
+    pass
+
 def isDead():
     global log
     if sum(log) == 0:
