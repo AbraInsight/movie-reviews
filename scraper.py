@@ -27,7 +27,7 @@ app = Flask(__name__)
 cors = CORS(app,resources={r"/*":{"origins":"*"}})
 socket = SocketIO(app)
 
-@socket.on('connect')
+@socket.on('connect', namespace='/api/realtime/update')
 def on_connect():
     pass
 
