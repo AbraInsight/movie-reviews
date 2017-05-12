@@ -27,33 +27,51 @@
         current_film = '';
     });
 
-    $(window).on('resize', drawAll);
+    $('#picker').on('change', function ($event) {
+        current_period = $event.target.value;
+        getData(true)
+            .then(function () {
+                drawAll();
+            });
+    });
+
+    $(window).on('resize', function () {
+        if (current_film) {
+            drawAll()
+        }
+    });
 
     // call the google charts api loader and callback on ready
     google.charts.load('current', { 'packages': ['corechart'] });
     google.charts.setOnLoadCallback(getData);
 
-    function getData() {
-        // call the server for data
-        $.get('/api/realtime/init/?period=' + encodeURIComponent(current_period))
-            .done(function (resp) {
-                current_data = resp;
-            });
-    }
-
     var socket = io('http://127.0.0.1:4200/api/realtime/update');
     socket.on('connect', function () {
         console.log('CONNECT');
     });
-    socket.on('message', function (snap) {
-        if (current_data[snap.film].length > (current_period * 60)) {
-            current_data[snap.film].splice(0, 1);
-        }
-        current_data[snap.film].push(snap.data);
-        if (current_film !== '') {
-            drawAll();
-        }
-    });
+
+    function getData(update) {
+        // call the server for data
+        return $.get('/api/realtime/init/?period=' + encodeURIComponent(current_period))
+            .done(function (resp) {
+                current_data = resp;
+                if (!update) {
+                    setupSockets();
+                }
+            });
+    }
+
+    function setupSockets() {
+        socket.on('message', function (snap) {
+            if (current_data[snap.film].length > (current_period * 60)) {
+                current_data[snap.film].splice(0, 1);
+            }
+            current_data[snap.film].push(snap.data);
+            if (current_film !== '') {
+                drawAll();
+            }
+        });
+    }
 
     function buildData(config) {
         var out = [];
@@ -69,7 +87,6 @@
             })
             out.push(line);
         });
-        console.log(out);
         return out;
     }
 
