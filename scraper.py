@@ -1,5 +1,7 @@
 from flask import Flask, jsonify, render_template, request
 from flask_socketio import SocketIO
+from flask.ext.cors import CORS
+
 import os
 import time
 import sqlite3 as lite
@@ -22,6 +24,7 @@ log = []
 con = None
 
 app = Flask(__name__)
+cors = CORS(app,resources={r"/*":{"origins":"*"}})
 socket = SocketIO(app)
 
 def isDead():
