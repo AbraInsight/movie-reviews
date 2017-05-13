@@ -1,6 +1,6 @@
 from flask import Flask, jsonify, render_template, request
 from flask_socketio import SocketIO
-from flask.ext.cors import CORS
+from flask_cors import CORS
 
 import os
 import time

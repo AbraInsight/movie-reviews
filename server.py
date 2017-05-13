@@ -34,6 +34,6 @@ def api_realtime_init():
     con.close()
     return jsonify(data)
 
-# if __name__ == '__main__':
-#     app.config['TEMPLATES_AUTO_RELOAD'] = True
-#     app.run()
+if __name__ == '__main__':
+    app.config['TEMPLATES_AUTO_RELOAD'] = True
+    app.run()
