@@ -1,8 +1,8 @@
 (function () {
 
-    var current_data = [];
-    var current_film = [];
-    var current_period = 1;
+    var data;
+    var film;
+    var period = 1;
     var structure = ['dt', 'summed', 'num'];
 
     $('.cover').on('mouseenter', function ($event) {
@@ -14,30 +14,35 @@
     });
 
     $('.cover').on('click', function ($event) {
-        current_film = $event.target.dataset.id;
+        film = $event.target.dataset.id;
         $($event.target).addClass('selected');
         $('body').addClass('view');
         $('.meta .title').text($event.target.dataset.title);
-        drawAll();
+        if (data) {
+            drawAll();
+        }
     })
 
     $('.arrow').on('click', function () {
         $('.cover').removeClass('selected');
         $('body').removeClass('view');
-        current_film = '';
+        film = '';
     });
 
     $('#picker').on('change', function ($event) {
-        current_period = $event.target.value;
+        period = $event.target.value;
+        $('body').removeClass('ready');
         getData(true)
             .then(function () {
-                drawAll();
+                if (data) {
+                    drawAll();
+                }
             });
     });
 
     $(window).on('resize', function () {
-        if (current_film) {
-            drawAll()
+        if (data && film) {
+            drawAll();
         }
     });
 
@@ -53,24 +58,26 @@
     function getData(update) {
         loading = true;
         // call the server for data
-        return $.get('/api/realtime/init/?period=' + encodeURIComponent(current_period))
+        return $.get('/api/realtime/init/?period=' + encodeURIComponent(period))
             .done(function (resp) {
-                current_data = resp;
-                $('#covers').addClass('show');
-                $('#spinner').addClass('hide');
+                $('body').addClass('ready');
+                data = resp;
                 if (!update) {
                     setupSockets();
+                }
+                if (film) {
+                    drawAll();
                 }
             });
     }
 
     function setupSockets() {
         socket.on('message', function (snap) {
-            if (current_data[snap.film].length > (current_period * 60)) {
-                current_data[snap.film].splice(0, 1);
+            if (data[snap.film].length > (period * 60)) {
+                data[snap.film].splice(0, 1);
             }
-            current_data[snap.film].push(snap.data);
-            if (current_film !== '') {
+            data[snap.film].push(snap.data);
+            if (film) {
                 drawAll();
             }
         });
@@ -78,7 +85,7 @@
 
     function buildData(config) {
         var out = [];
-        current_data[current_film].forEach(function (row) {
+        data[film].forEach(function (row) {
             line = [];
             config.forEach(function (col) {
                 var i = structure.indexOf(col);
