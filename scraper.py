@@ -1,7 +1,3 @@
-from flask import Flask, jsonify, render_template, request
-from flask_socketio import SocketIO
-from flask_cors import CORS
-
 import os
 import time
 import sqlite3 as lite
@@ -9,8 +5,11 @@ from datetime import datetime
 from threading import Timer
 import tweepy
 import simplejson as json
+from flask import Flask
+from flask_socketio import SocketIO
+from flask_cors import CORS
 
-dictP = ["good", "like", "love", "want to see", "need to see", "need to watch", "great", "excellent", "great"]
+dictP = ["good", "like", "love", "want to see", "need to see", "need to watch", "great", "excellent"]
 dictN = ["sad", "hate", "spoil", "died", "really shock", "sick"]
 
 # Variables that contains the user credentials to access Twitter API
